@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 15 23 42; // #0f172a
+    --color-on-primary: 255 255 255;
+    --color-background: 247 249 251; // #f7f9fb
+    --color-surface: 247 249 251; // #f7f9fb
+    --color-on-surface: 25 28 30; // #191c1e
+    --color-on-surface-variant: 69 70 77; // #45464d
+    --color-surface-container-lowest: 255 255 255; // #ffffff
+    --color-surface-container-low: 242 244 246; // #f2f4f6
+    --color-surface-container: 236 238 240; // #eceef0
+    --color-outline-variant: 198 198 205; // #c6c6cd
+    --color-outline: 118 119 125; // #76777d
+    --color-secondary: 0 81 213; // #0051d5
+    --color-on-secondary: 255 255 255;
+    --hero-glow-1: rgb(var(--color-secondary) / 0.07);
+    --hero-glow-2: rgb(99 102 241 / 0.06);
+  }
+
+  .dark {
+    --color-primary: 248 250 252; // #f8fafc (slate-50)
+    --color-on-primary: 15 23 42; // #0f172a
+    --color-background: 11 15 25; // #0b0f19 (deep dark blue-grey)
+    --color-surface: 11 15 25; // #0b0f19
+    --color-on-surface: 241 245 249; // #f1f5f9 (slate-100)
+    --color-on-surface-variant: 148 163 184; // #94a3b8 (slate-400)
+    --color-surface-container-lowest: 15 23 42; // #0f172a (slate-900)
+    --color-surface-container-low: 30 41 59; // #1e293b (slate-800)
+    --color-surface-container: 30 41 59; // #1e293b
+    --color-outline-variant: 51 65 85; // #334155 (slate-700)
+    --color-outline: 100 116 139; // #64748b (slate-500)
+    --color-secondary: 59 130 246; // #3b82f6 (bright blue)
+    --color-on-secondary: 255 255 255;
+    --hero-glow-1: rgb(var(--color-secondary) / 0.15);
+    --hero-glow-2: rgb(99 102 241 / 0.1);
+  }
+
+  body {
+    @apply bg-background text-on-surface antialiased overflow-x-hidden font-body-md transition-colors duration-300;
+  }
+}
+
+.timeline-line::before {
+  content: '';
+  @apply absolute left-0 top-0 bottom-0 w-[2px] bg-outline-variant/30;
+}
+
+.glass-card {
+  @apply bg-surface-container-lowest/70 backdrop-blur-md border border-outline-variant/50 transition-all duration-300;
+}
+
+.hero-gradient {
+  background: 
+    radial-gradient(circle at 80% 20%, var(--hero-glow-1) 0%, transparent 55%),
+    radial-gradient(circle at 20% 80%, var(--hero-glow-2) 0%, transparent 50%),
+    rgb(var(--color-background));
+  transition: background 0.3s ease;
+}
