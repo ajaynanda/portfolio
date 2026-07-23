@@ -1,10 +1,14 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModalComponent } from './shared/modal.component';
+import { AnimateOnScrollDirective } from './shared/animate-on-scroll.directive';
 
 interface Project {
   title: string;
   description: string;
+  detailedDescription?: string;
   tags: string[];
+  packages?: string[];
   icon: string;
   category: 'Angular' | 'MEAN' | 'AWS' | 'Other' | 'MERN';
   link?: string;
@@ -13,7 +17,7 @@ interface Project {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalComponent, AnimateOnScrollDirective],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -21,6 +25,7 @@ export class App {
   // Navigation & UI States
   protected readonly isDarkMode = signal(false);
   protected readonly isContactOpen = signal(false);
+  protected readonly activeProjectDetails = signal<Project | null>(null);
   protected readonly isMobileMenuOpen = signal(false);
   protected readonly activeFilter = signal<string>('All');
   protected readonly formSubmitted = signal(false);
@@ -65,7 +70,7 @@ export class App {
     {
       role: 'Software Engineer',
       company: 'Beinex Consulting Pvt. Ltd',
-      period: 'Dec 2024 - Present',
+      period: 'Dec 2024 - July 2026',
       points: [
         'Drive the development of enterprise web applications using Angular 18/19 and TypeScript, delivering robust, modular, and maintainable frontend architectures.',
         'Contributed to migrating a large-scale monolithic application into a multi-repository Micro Frontend architecture leveraging Module Federation.',
@@ -108,7 +113,9 @@ export class App {
     {
       title: 'Performance Dashboard',
       description: 'A real-time telemetry and SRE performance dashboard featuring live-simulated server vitals, interactive incident log alerting, historical performance reports with pagination, and developer support ticket portals.',
+      detailedDescription: 'A production-ready telemetry and SRE server dashboard. Simulates CPU/RAM usage and incident logs in real-time, supports historical telemetry charting with paginated reports, and a ticket submission portal for technical support.',
       tags: ['React', 'Node.js', 'MongoDB', 'Chart.js', 'Tailwind'],
+      packages: ['react', 'react-dom', 'chart.js', 'react-chartjs-2', 'tailwindcss', 'prop-types', 'vite'],
       icon: 'monitoring',
       category: 'MERN',
       link: 'https://performace-dashboard.vercel.app/'
@@ -116,7 +123,9 @@ export class App {
     {
       title: 'Redstore Ecommerce',
       description: 'A feature-rich ecommerce platform built with Angular, focusing on seamless product discovery and state-driven cart management.',
+      detailedDescription: 'Features a responsive, dynamic catalog search, product catalog categories, sorting mechanisms, price-range filtering, and dynamic cart total computation using RxJS BehaviorSubjects.',
       tags: ['Angular', 'RxJS', 'Firebase'],
+      packages: ['@angular/core', '@angular/common', '@angular/router', 'rxjs', 'firebase', 'tailwindcss'],
       icon: 'shopping_bag',
       category: 'Angular',
       link: 'https://redstoreout.netlify.app/'
@@ -124,7 +133,9 @@ export class App {
     {
       title: 'Netflix Clone',
       description: 'High-fidelity recreation of the Netflix UI featuring dynamic content loading and a highly responsive media catalog interface.',
+      detailedDescription: 'An interface recreation capturing core features like video trailer selection, poster layout panels, dynamic catalog banners, and modal navigation. Synchronized with the TMDB API to pull actual media rosters and cast info.',
       tags: ['Angular', 'TMDB API', 'Tailwind'],
+      packages: ['@angular/core', '@angular/common', '@angular/router', 'rxjs', 'swiper', 'tailwindcss'],
       icon: 'movie',
       category: 'Angular',
       link: 'https://netv18flix.netlify.app/'
@@ -132,7 +143,9 @@ export class App {
     {
       title: 'AWS Drive Management',
       description: 'Administrative dashboard for cloud asset management, integrating AWS SDKs with a powerful Angular frontend for file operations.',
+      detailedDescription: 'Simple folder navigation dashboard for cloud object storage. Uploads, downloads, shares, and deletes files directly via AWS SDK integration.',
       tags: ['AWS', 'TypeScript', 'NGRX'],
+      packages: ['@angular/core', '@angular/common', '@angular/router', 'aws-sdk', 'bootstrap', 'rxjs', 'font-awesome'],
       icon: 'cloud',
       category: 'AWS',
       link: 'http://drivemanagements.s3-website-us-east-1.amazonaws.com/'
@@ -140,7 +153,9 @@ export class App {
     {
       title: 'Social Media Application',
       description: 'Real-time networking platform featuring live feeds, instant messaging, and profile management systems.',
+      detailedDescription: 'Comprehensive networking environment featuring secure JSON Web Token authentication, image-supported publishing, comment sections, private messaging over WebSocket connections, and profile configurations.',
       tags: ['MEAN Stack', 'Socket.io', 'SCSS'],
+      packages: ['@angular/core', '@angular/material', 'bootstrap', 'socket.io-client', 'express', 'mongoose', 'socket.io', 'jsonwebtoken', 'multer', 'rxjs'],
       icon: 'groups',
       category: 'MEAN',
       link: 'https://konnectsme.netlify.app/'
@@ -178,6 +193,16 @@ export class App {
 
   closeContactModal(): void {
     this.isContactOpen.set(false);
+  }
+
+  openProjectDetails(project: Project, event: Event): void {
+    event.stopPropagation();
+    event.preventDefault();
+    this.activeProjectDetails.set(project);
+  }
+
+  closeProjectDetails(): void {
+    this.activeProjectDetails.set(null);
   }
 
   updateFormField(field: 'name' | 'email' | 'message', event: Event): void {
