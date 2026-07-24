@@ -122,12 +122,12 @@ export class App {
     },
     {
       title: 'Redstore Ecommerce',
-      description: 'A feature-rich ecommerce platform built with Angular, focusing on seamless product discovery and state-driven cart management.',
-      detailedDescription: 'Features a responsive, dynamic catalog search, product catalog categories, sorting mechanisms, price-range filtering, and dynamic cart total computation using RxJS BehaviorSubjects.',
-      tags: ['Angular', 'RxJS', 'Firebase'],
-      packages: ['@angular/core', '@angular/common', '@angular/router', 'rxjs', 'firebase', 'tailwindcss'],
+      description: 'A fully responsive multi-page e-commerce storefront designed with clean, semantic HTML5 and vanilla CSS3 to showcase modern layout techniques.',
+      detailedDescription: 'A complete multi-page front-end interface for an online store, featuring a detailed homepage, product catalog with sorting controls, product details view with image selection, a shopping cart layout, and tabbed login/register forms. Built entirely with custom CSS Flexbox and Grid layouts to ensure fluid responsiveness across all screens without using external frameworks.',
+      tags: ['HTML5', 'CSS3', 'Responsive Design'],
+      packages: [],
       icon: 'shopping_bag',
-      category: 'Angular',
+      category: 'Other',
       link: 'https://redstoreout.netlify.app/'
     },
     {
@@ -144,7 +144,7 @@ export class App {
       title: 'AWS Drive Management',
       description: 'Administrative dashboard for cloud asset management, integrating AWS SDKs with a powerful Angular frontend for file operations.',
       detailedDescription: 'Simple folder navigation dashboard for cloud object storage. Uploads, downloads, shares, and deletes files directly via AWS SDK integration.',
-      tags: ['AWS', 'TypeScript', 'NGRX'],
+      tags: ['AWS', 'TypeScript', 'Angular'],
       packages: ['@angular/core', '@angular/common', '@angular/router', 'aws-sdk', 'bootstrap', 'rxjs', 'font-awesome'],
       icon: 'cloud',
       category: 'AWS',
