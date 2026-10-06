@@ -151,6 +151,16 @@ export class App {
       link: 'http://drivemanagements.s3-website-us-east-1.amazonaws.com/'
     },
     {
+      title: 'Expense Management',
+      description: 'A full-stack financial analytics and expense tracking platform featuring interactive D3.js visualization charts, real-time transaction management, multi-account banking integration, and JWT security.',
+      detailedDescription: 'SpendSmart Expense Management is an enterprise-ready full-stack financial application. It features dynamic D3.js chart visualizations for income and expense breakdowns, real-time transaction logging and filtering, multi-bank account synchronization, secure JWT authentication with RxJS exhaustMap data protection, and dark/light theme options. Built with Angular 20, Node.js, Express, and MongoDB.',
+      tags: ['Angular', 'Node.js', 'MongoDB', 'D3.js', 'RxJS', 'Express'],
+      packages: ['@angular/core', 'rxjs', 'd3', 'express', 'mongoose', 'jsonwebtoken', 'bcryptjs'],
+      icon: 'account_balance_wallet',
+      category: 'MEAN',
+      link: 'https://expense-management-gamma-ten.vercel.app'
+    },
+    {
       title: 'Social Media Application',
       description: 'Real-time networking platform featuring live feeds, instant messaging, and profile management systems.',
       detailedDescription: 'Comprehensive networking environment featuring secure JSON Web Token authentication, image-supported publishing, comment sections, private messaging over WebSocket connections, and profile configurations.',
